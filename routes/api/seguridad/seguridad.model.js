@@ -43,3 +43,20 @@ userModel.getById = (id)=>{
     return null
   }
 }
+userModel.addNew = ({ usertitle, userurl, userthumbnailUrl ,useralbum }  )=>{
+  var newUser = Object.assign(
+    {},
+    userTemplate,
+    {
+      usertitle: usertitle,
+      userurl: userurl,
+      userthumbnailUrl:userthumbnailUrl,
+      useralbum: useralbum
+    }
+  );
+  newUser.userID = userCollection.length + 1;
+
+  userCollection.push(newUser);
+  writeToFile();
+  return newUser;
+}
