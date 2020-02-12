@@ -89,3 +89,16 @@ userModel.update = (id, { usertitle, userurl, userthumbnailUrl, useralbum  })=>{
   writeToFile();
   return updateUser;
 }
+userModel.deleteByCode = (id)=>{
+  var newCollection = [];
+  newCollection = userCollection.filter(
+    (o)=>{
+      return o.userID !== id;
+    }
+  );
+  userCollection = newCollection;
+  writeToFile();
+  return true;
+}
+
+module.exports = userModel;
